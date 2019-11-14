@@ -6,18 +6,23 @@
     <body>
         <div id="root"></div>
         <script>
+            
             const e = React.createElement;
+
             class LikeButton extends React.Component {
-                contsructor(props) {
+                constructor(props) {
                     super(props);
+                    this.state = {
+                        liked: false
+                    }
                 }
                 render() {
-                    return e('button', null, 'Like');
+                    return e('button', { onClick: () => this.setState({ liked: true }), type: 'submit' }, this.state.liked ? 'Liked' : 'Like');
                 }
             }
         </script>
         <script>
-            ReactDom.render(e(LikeButton, document.querySelector('#root')));
+            ReactDOM.render(e(LikeButton), document.querySelector('#root'));
         </script>
     </body>
 </html>
